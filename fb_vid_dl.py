@@ -4,13 +4,12 @@
 # Usage python fb_vid_dl.py https://www.facebook.com/motivationsdaily/videos/2184543234991440/ hd
 
 
-from time import sleep
-
+import time
 import re
 import sys
 import requests
 import urllib.request
-import random
+# import random
 import argparse
 
 good = "\033[92m✔\033[0m"
@@ -55,7 +54,10 @@ def main():
     file_url = extract_url(r.text, args.resolution)
 
     # Generates a random number with will be the file name
-    path = str(random.random())[3:12] + ".mp4"
+    timestring = time.strftime("%Y%m%d-%H%M%S")
+    path = timestring + ".mp4"
+
+    # path = str(random.random())[3:12] + ".mp4"
 
     print("Downloading video...", end="\r", flush=True)
     # Downloads the video
